@@ -31,5 +31,10 @@ describe('ProblemeComponent', () => {
     expect(zone.valid).toBeFalsy();
   })
 
-  
+  it('champ prenom du probleme est valide avec 3 caracteres', () => {
+    let zone = component.problemeForm.controls['prenomProbleme'];
+    zone.setValue('a'.repeat(3))
+    expect(zone.valid).toBeTruthy();
+  })
+
 });
