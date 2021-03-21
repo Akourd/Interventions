@@ -53,19 +53,15 @@ describe('ProblemeComponent', () => {
     expect(errors['required']).toBeTruthy();
   })
 
-  // it('champ prenom du probleme est valide avec 10 espaces', () => {
-  //   let errors = {};
-  //   let zone = component.problemeForm.controls['prenomProbleme'];
-  //   zone.setValue('');
-  //   errors = zone.errors || {};
-  //   expect(errors['minlength']).toBeTruthy();
-  // })
+  it('champ prenom du probleme est valide avec 10 espaces', () => {
+    let zone = component.problemeForm.controls['prenomProbleme'];
+    zone.setValue(' '.repeat(10));
+    expect(zone.valid).toBeTruthy();
+  })
 
-  // it('champ prenom du probleme est valide avec 2 espaces et 1 caractere', () => {
-  //   let errors = {};
-  //   let zone = component.problemeForm.controls['prenomProbleme'];
-  //   zone.setValue('');
-  //   errors = zone.errors || {};
-  //   expect(errors['minlength']).toBeTruthy();
-  // })
+  //  it('champ prenom du probleme est valide avec 2 espaces et 1 caractere', () => {
+  //    let zone = component.problemeForm.controls['prenomProbleme'];
+  //    zone.setValue(' '.repeat(2) + 'a');
+  //    expect(zone.valid).toBeTruthy();
+  //  })
 });
