@@ -26,9 +26,11 @@ describe('ProblemeComponent', () => {
   });
 
   it('champ prenom du probleme ne doit pas comporter 2 caracteres', () => {
+    let errors = {};
     let zone = component.problemeForm.controls['prenomProbleme'];
-    zone.setValue('a'.repeat(2))
-    expect(zone.valid).toBeFalsy();
+    zone.setValue('a'.repeat(2));
+    errors = zone.errors || {};
+    expect(errors['minlength']).toBeTruthy();
   })
 
   it('champ prenom du probleme est valide avec 3 caracteres', () => {
@@ -36,10 +38,34 @@ describe('ProblemeComponent', () => {
     zone.setValue('a'.repeat(3))
     expect(zone.valid).toBeTruthy();
   })
-  
+
   it('champ prenom du probleme est valide avec 200 caracteres', () => {
     let zone = component.problemeForm.controls['prenomProbleme'];
     zone.setValue('a'.repeat(200))
     expect(zone.valid).toBeTruthy();
   })
+
+  it('champ prenom du probleme est invalide si il est vide', () => {
+    let errors = {};
+    let zone = component.problemeForm.controls['prenomProbleme'];
+    zone.setValue('');
+    errors = zone.errors || {};
+    expect(errors['required']).toBeTruthy();
+  })
+
+  // it('champ prenom du probleme est valide avec 10 espaces', () => {
+  //   let errors = {};
+  //   let zone = component.problemeForm.controls['prenomProbleme'];
+  //   zone.setValue('');
+  //   errors = zone.errors || {};
+  //   expect(errors['minlength']).toBeTruthy();
+  // })
+
+  // it('champ prenom du probleme est valide avec 2 espaces et 1 caractere', () => {
+  //   let errors = {};
+  //   let zone = component.problemeForm.controls['prenomProbleme'];
+  //   zone.setValue('');
+  //   errors = zone.errors || {};
+  //   expect(errors['minlength']).toBeTruthy();
+  // })
 });
