@@ -10,9 +10,9 @@ describe('ProblemeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule],
-      declarations: [ ProblemeComponent ]
+      declarations: [ProblemeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe('ProblemeComponent', () => {
     let zone = component.problemeForm.controls['prenomProbleme'];
     zone.setValue('a'.repeat(2));
     errors = zone.errors || {};
-    expect(errors['minlength']).toBeTruthy();
+    expect(errors['nbCaracteresInsuffisants']).toBe(true);
   })
   it('#2 | Zone PRÉNOM valide avec 3 caractères', () => {
     let zone = component.problemeForm.controls['prenomProbleme'];
@@ -49,14 +49,18 @@ describe('ProblemeComponent', () => {
     errors = zone.errors || {};
     expect(errors['required']).toBeTruthy();
   })
-  it('#5 | Zone PRÉNOM valide avec 10 espaces', () => {
+  it('#5 | Zone PRÉNOM invalide avec 10 espaces', () => {
+    let errors = {};
     let zone = component.problemeForm.controls['prenomProbleme'];
     zone.setValue(' '.repeat(10));
-    expect(zone.valid).toBeTruthy();
+    errors = zone.errors || {};
+    expect(errors['nbCaracteresInsuffisants']).toBe(true);
   })
-  it('#6 | Zone PRÉNOM valide avec 2 espaces et 1 caractère', () => {
+  it('#6 | Zone PRÉNOM invalide avec 2 espaces et 1 caractère', () => {
+    let errors = {};
     let zone = component.problemeForm.controls['prenomProbleme'];
     zone.setValue(' '.repeat(2) + 'a');
-    expect(zone.valid).toBeTruthy();
-    })
+    errors = zone.errors || {};
+    expect(errors['nbCaracteresInsuffisants']).toBe(true);
+  })
 });

@@ -6,7 +6,7 @@ export class ZonesValidator {
         return (c: AbstractControl): { [key: string]: boolean } | null => {
 
             // IF pour null ici?
-            if (!c.value == null) {
+            if (c.value == null) {
 
                 return { 'nbCaracteresInsuffisants': true };
 

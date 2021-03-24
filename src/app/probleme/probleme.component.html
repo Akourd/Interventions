@@ -28,7 +28,7 @@
             problemeForm.get('prenomProbleme').dirty) &&
             problemeForm.get('prenomProbleme').errors">
 
-                            <span *ngIf="problemeForm.get('prenomProbleme').errors.minlength">
+                            <span *ngIf="problemeForm.get('prenomProbleme').errors.nbCaracteresInsuffisants">
                                 <small class="text-muted">
                                     Indiquer au moins 3 caracteres
                                 </small>
